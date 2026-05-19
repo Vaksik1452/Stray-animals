@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Помощь бездомным животным</title>
+    <link rel="stylesheet" href="style.css">
+	<style>
+	* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 1rem;
+}
+
+.tabs {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tabs li {
+    display: inline;
+}
+
+.tab-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px 5px 0 0;
+    background: #555;
+    transition: background 0.3s;
+}
+
+.tab-link:hover, .tab-link.active {
+    background: #777;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    min-height: 60vh;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.poem {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-left: 3px solid #333;
+    margin: 1rem 0;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background: #555;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #333;
+    color: white;
+}
+	</style>
+</head>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Функция для переключения вкладок
+    function switchTab(tabId) {
+        // Убираем активный класс у всех вкладок и их содержимого
+        tabLinks.forEach(link => link.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Добавляем активный класс нужной вкладке и её содержимому
+        document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // Добавляем обработчики событий на все вкладки
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tabId = this.getAttribute('data-tab');
+            switchTab(tabId);
+        });
+    });
+
+    // По умолчанию показываем вкладку «О проблеме»
+    switchTab('problem');
+});
+</script>
+<body>
+    <header>
+        <h1>Помощь бездомным животным</h1>
+        <nav>
+            <ul class="tabs">
+                <li><a href="#" class="tab-link active" data-tab="problem">О проблеме</a></li>
+                <li><a href="#" class="tab-link" data-tab="stats">Статистика</a></li>
+                <li><a href="#" class="tab-link" data-tab="shelters">Приюты</a></li>
+                <li><a href="#" class="tab-link" data-tab="help">Как помочь</a></li>
+                <li><a href="#" class="tab-link" data-tab="report">Сообщить</a></li>
+                <li><a href="#" class="tab-link" data-tab="photos">Фотографии</a></li>
+                <li><a href="#" class="tab-link" data-tab="poems">Стихи</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Вкладка «О проблеме» -->
+        <div id="problem" class="tab-content active">
+            <h2>О проблеме бездомных животных</h2>
+            <p>Текст о проблеме бездомных животных...</p>
+        </div>
+
+        <!-- Вкладка «Статистика» -->
+        <div id="stats" class="tab-content">
+            <h2>Статистика</h2>
+            <p>Статистические данные...</p>
+        </div>
+
+        <!-- Вкладка «Приюты» -->
+        <div id="shelters" class="tab-content">
+            <h2>Приюты для животных</h2>
+            <p>Список приютов...</p>
+        </div>
+
+        <!-- Вкладка «Как помочь» -->
+        <div id="help" class="tab-content">
+            <h2>Как помочь бездомным животным</h2>
+            <p>Способы помощи...</p>
+        </div>
+
+        <!-- Вкладка «Сообщить» -->
+        <div id="report" class="tab-content">
+            <h2>Сообщить о бездомном животном</h2>
+            <form>
+                <label>Местоположение: <input type="text"></label><br>
+                <label>Описание: <textarea></textarea></label><br>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+
+        <!-- Вкладка «Фотографии» -->
+        <div id="photos" class="tab-content">
+            <h2>Фотографии животных</h2>
+            <div class="gallery">
+                <!-- Здесь будут фотографии -->
+                <img src="https://via.placeholder.com/200" alt="Фото животного">
+                <img src="https://via.placeholder.com/200" alt="Фото животного">
+            </div>
+        </div>
+
+        <!-- Вкладка «Стихи» -->
+        <div id="poems" class="tab-content">
+            <h2>Стихи о животных</h2>
+            <div class="poem">
+                <h3>Название стихотворения</h3>
+                <p>Строка 1<br>Строка 2<br>Строка 3</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Помощь бездомным животным. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

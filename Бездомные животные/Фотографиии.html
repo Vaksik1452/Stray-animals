@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бездомные животные - помощь и забота</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            background-size: 30px 30px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .paw-prints {
+            font-size: 2rem;
+            margin-top: 1rem;
+            opacity: 0.6;
+        }
+ .nav {
+            background: #1a1a2e;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            background: #e94560;
+            transform: translateY(-2px);
+        }
+ .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+   .gallery-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        .gallery-title span {
+            color: #e94560;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-info {
+            padding: 1.5rem;
+        }
+
+        .photo-info h3 {
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .photo-info p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .photo-info .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .tag.urgent {
+            background: #e94560;
+            color: white;
+        }
+
+        .tag.friendly {
+            background: #4ecca3;
+            color: white;
+        }
+
+        .tag.home {
+            background: #0f3460;
+            color: white;
+        }
+  .featured {
+            background: linear-gradient(135deg, #e94560 0%, #1a1a2e 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .featured h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .featured-btn {
+            background: white;
+            color: #e94560;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+		 .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e94560;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+		 .help-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .help-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .help-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: transform 0.3s;
+        }
+
+        .help-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .help-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .help-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .help-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+  .contact-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            opacity: 0.8;
+        }
+		  .footer {
+            background: #0f0f1a;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.7;
+        }
+
+        .footer .heart {
+            color: #e94560;
+        }
+   @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+		   .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+ .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e94560;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+        }
+
+        .scroll-top.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+ <header class="header">
+        <h1>🐾 Друзья без дома</h1>
+        <p>Фотографии бездомных животных, которые ищут любящий дом</p>
+        <div class="paw-prints">🐾 🐶 🐱 🐾</div>
+    </header>
+<nav class="nav">
+        <ul>
+            <li><a href="#gallery">📷 Галерея</a></li>
+            <li><a href="#stats">📊 Статистика</a></li>
+            <li><a href="#help">💝 Помочь</a></li>
+            <li><a href="#contacts">📞 Контакты</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- Title -->
+ <div class="gallery" id="gallery">
+            
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=300&fit=crop" alt="Собака">
+                <div class="photo-info">
+                    <h3>Рекс</h3>
+                    <p>Добрый пёс, 2 года. Привит, стерилизован. Любит прогулки и игры с мячом.</p>
+                    <div class="tags">
+                        <span class="tag">Собака</span>
+                        <span class="tag friendly">Дружелюбный</span>
+                        <span class="tag">Нужен дом</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=300&fit=crop" alt="Кошка">
+                <div class="photo-info">
+                    <h3>Мурка</h3>
+                    <p>Ласковая кошка, 3 года. Спокойная, приучена к лотку. Обожает мурлыкать.</p>
+                    <div class="tags">
+                        <span class="tag">Кошка</span>
+                        <span class="tag home">Ищет дом</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=400&h=300&fit=crop" alt="Собака">
+                <div class="photo-info">
+                    <h3>Бобик</h3>
+                    <p>Энергичный пёс, 1 год. Хорошо ладит с детьми. Очень преданный.</p>
+                    <div class="tags">
+                        <span class="tag">Собака</span>
+                        <span class="tag urgent">Срочно</span>
+                        <span class="tag friendly">Активный</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=400&h=300&fit=crop" alt="Кошка">
+                <div class="photo-info">
+                    <h3>Варежка</h3>
+                    <p>Пушистая красавица, 4 года. Молчаливая, но очень нежная.</p>
+                    <div class="tags">
+                        <span class="tag">Кошка</span>
+                        <span class="tag home">Ищет дом</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?w=400&h=300&fit=crop" alt="Собака">
+                <div class="photo-info">
+                    <h3>Шарик</h3>
+                    <p>Возрастной пёс, 8 лет. Спокойный, не требует много внимания.</p>
+                    <div class="tags">
+                        <span class="tag">Собака</span>
+                        <span class="tag urgent">Нужен хозяин</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=300&fit=crop" alt="Кошка">
+                <div class="photo-info">
+                    <h3>Снежок</h3>
+                    <p>Белый котёнок, 6 месяцев. Игривый и любопытный.</p>
+                    <div class="tags">
+                        <span class="tag">Котёнок</span

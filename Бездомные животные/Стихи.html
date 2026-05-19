@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стихи о бездомных животных</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .intro {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .poem-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .poem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .poem-card h3 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-left: 15px;
+        }
+
+        .poem-card .emoji {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .poem-content {
+            padding-left: 15px;
+            color: #555;
+            font-size: 1.1em;
+            white-space: pre-line;
+            line-height: 2;
+        }
+
+        .poem-footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .author {
+            color: #764ba2;
+            font-style: italic;
+        }
+
+        .like-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .like-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .like-btn.liked {
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .poem-card {
+                padding: 20px;
+            }
+
+            .poem-content {
+                font-size: 1em;
+            }
+        }
+		  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+		header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+		  nav {
+            background-color: #34495e;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #2980b9;
+        }
+		.container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+		section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+ .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .problem-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .problem-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            color: #3498db;
+            font-weight: bold;
+        }
+  .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-box .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+		.org-card {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .org-logo {
+            width: 150px;
+            height: 150px;
+            background: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+        }
+
+        .org-info {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .org-info h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .org-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            background: #e8f4f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+ .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .help-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .help-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .help-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .help-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+		  .report-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+		  footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #3498db;
+        }
+		 .map-placeholder {
+            background: #e9ecef;
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #6c757d;
+        }
+		@media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .org-card {
+                flex-direction: column;
+            }
+
+            .org-logo {
+                width: 100%;
+                height: 100px;
+            }
+        }
+ .alert-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🐾 Стихи о бездомных животных</h1>
+        <p>Сердце, открытое для тех, кто ждёт помощи</p>
+    </header>
+
+<nav>
+        <ul>
+            <li><a href="#about">О проблеме</a></li>
+            <li><a href="#stats">Статистика</a></li>
+            <li><a href="#organizations">Приюты и организации</a></li>
+            <li><a href="#help">Как помочь</a></li>
+            <li><a href="#report">Сообщить о животном</a></li>
+			<li><a href="Фотографии.html">Фотографии</a></li>
+			<li><a href="Стихи.html">Стихи</a></li>
+        </ul>
+    </nav>
+
+        <div class="cta-section">
+            <h3>💝 Помогите бездомным животным</h3>
+            <p>Поддержите приюты для животных или возьмите питомца из приюта — это изменит чью-то жизнь!</p>
+        </div>
+
+        <div class="poem-card">
+            <div class="emoji">🐕</div>
+            <h3>Бездомный пёс</h3>
+            <div class="poem-content">
+Бродит пёс бездомный по дворам,
+Ищет ласку, ищет теплоту.
+Мокрый нос, потухшие глаза,
+Всё надеется найти мечту.
+
+Кто-то пнет его, прогонит прочь,
+Кто-то равнодушно пройдёт мимо.
+Но в его глазах — не жалобы, а боль,
+И терпение, и вера негасима.
+
+Может быть, когда-нибудь найдётся
+Тот, кто приласкает, приютит.
+И собачий хвост опять забьётся,
+И душа собачья запоёт.
+            </div>
+            <div class="poem-footer">
+                <span class="author">Аноним</span>
+                <button class="like-btn" onclick="toggleLike(this)">♡ Нравится</button>
+            </div>
+        </div>
+
+        <div class="poem-card">
+            <div class="emoji">🐈</div>
+            <h3>Кошка у подъезда</h3>
+            <div class="poem-content">
+Сидит кошка у подъезда,
+Мурлычет тихо под окном.
+Холодный ветер бьёт поспешно
+Её шерстяной, лёгкий дом.
+
+Она мурлычет, чтобы согреться,
+Чтоб хоть немного стало тепло.
+Но в подъезде — лишь темнота и дремота,
+И редко кто бросит ей молока.
+
+Кошка ждёт свою судьбу,
+Веря, что придёт тот час,
+Когда она найдёт избу,
+Где будут любить её, каждый час.
+            </div>
+            <div class="poem-footer">
+                <span class="author">Аноним</span>
+                <button class="like-btn" onclick="toggleLike(this)">♡ Нравится</button>
+            </div>
+        </div>
+
+        <div class="poem-card">
+            <div class="emoji">🐦</div>
+            <h3>Птенец воронёнок</h3>
+            <div class="poem-content">
+Выпал птенец из гнезда высоко,
+Лежит на траве, дрожит, пищит.
+Не может лететь, ему недотрога,
+И мама-ворона кружит, грустит.
+
+Попробуй человечество, очнись!
+Не мимо проходи, не отворачивайся.
+Ведь каждая маленькая птица —
+Частица мира, в котором живём.
+
+Подними его, верни на ветку,
+Дай шанс малышу увидеть небо.
+И может быть, однажды, в тихом месте,
+Он вспомнит доброту человека.
+            </div>
+            <div class="poem-footer">
+                <span class="author">Аноним</span>
+                <button class="like-btn" onclick="toggleLike(this)">♡ Нравится</button>
+            </div>
+        </div>
+
+        <div class="poem-card">
+            <div class="emoji">🐕‍🦺</div>
+            <h3>Надежда</h3>
+            <div class="poem-content">
+В приюте тесно, но не холодно,
+Собаки ждут у решётки дверной.
+У каждой история, у каждой больно,
+У каждой надежда — быть может, герой.
+
+Кто-то потерян, кто-то оставлен,
+Кто-то изъят из плохих рук.
+Но все они — преданны, все они славны,
+И каждый достоин ласки и наук.
+
+Прими в свой дом четвероногого друга,
+Не важно — породистый он иль простой.
+Он станет твоей опорой в недуге,
+Твоей преданной, верной душой.
+            </div>
+            <div class="poem-footer">
+                <span class="author">Аноним</span>
+                <button class="like-btn" onclick="toggleLike(this)">♡ Нравится</button>
+            </div>
+        </div>
+
+        <div class="poem-card">
+            <div class="emoji">🐇</div>
+            <h3>Зайчонок</h3>
+            <div class="poem-content">
+В лесу холодном, раннею весной,
+Зайчонок бедный замерзал в снегу.
+Он прятал лапки, уши опустил,
+Искал он маму, но не находил.
+
+Бродил без матери, без теплого жилья,
+Голодный маленький, едва живой.
+Но люди добрые нашли его,
+Согрели, выходили, берегли.
+
+Теперь в саду резвится он,
+Морковку грызёт и травку ест.
+Он счастлив, хоть не знает слов,
+Но каждый прыжок — как благодать!
+            </div>
+            <div class="poem-footer">
+                <span class="author">Аноним</span>
+                <button class="like-btn" onclick="toggleLike(this)">♡ Нравится</button>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>💖 Помните: мы в ответе за тех, кого приручили.</p>
+        <p>Если можете — помогите приюту для животных!</p>
+    </footer>
+
+    <script>
+        function toggleLike(button) {
+            button.classList.toggle('liked');
+            if (button.classList.contains('liked')) {
+                button.innerHTML = '♥ Нравится';
+            } else {
+                button.innerHTML = '♡ Нравится';
+            }
+        }
+    </script>
+</body>
+</html>
